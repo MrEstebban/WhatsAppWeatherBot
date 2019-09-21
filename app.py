@@ -19,7 +19,7 @@ def sms_reply():
     # Create reply
     resp = MessagingResponse()
     #resp.message("You said: {}".format(msg))
-    resp.message("Hoy esta haciendo frio :(")
+    #resp.message("Hoy esta haciendo frio :(")
     resp.message(respuesta)
 
     return str(resp)
