@@ -18,7 +18,7 @@ def sms_reply():
     resp = MessagingResponse()
 
     #Si el mensaje incluye la palabra "pronostico"
-    if "pronostico" in msg or "pronóstico" in msg:
+    if "pronostico" in msg or "pronóstico" in msg.lower():
         url = 'http://api.openweathermap.org/data/2.5/forecast?q=Bogota&appid=4b912705f55a6cded8314651f6f124f5&units=metric'
         datos_clima = requests.get(url).json()
 
@@ -38,6 +38,8 @@ def sms_reply():
                     horaCol = str((horaInt-5)-12) + ':00 pm'
 
             resp.message("Alrededor de las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['main']))
+
+            time.sleep(0.1)
     else:
         #respuesta de DialogFlow
         respuesta = fetch_reply(msg, tel)
