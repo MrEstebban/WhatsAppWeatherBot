@@ -39,7 +39,7 @@ def sms_reply():
 
             resp.message("Alrededor de las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['main']))
 
-            time.sleep(0.1)
+            time.sleep(0.5)
     else:
         #respuesta de DialogFlow
         respuesta = fetch_reply(msg, tel)
