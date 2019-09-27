@@ -18,8 +18,8 @@ def sms_reply():
     resp = MessagingResponse()
 
     #Si el mensaje incluye la palabra "pronostico"
-    if "pronostico" in msg or "pronóstico" in msg.lower():
-        url = 'http://api.openweathermap.org/data/2.5/forecast?q=Bogota&appid=4b912705f55a6cded8314651f6f124f5&units=metric'
+    if "pronostico" in msg.lower() or "pronóstico" in msg.lower():
+        url = 'http://api.openweathermap.org/data/2.5/forecast?q=Bogota&appid=4b912705f55a6cded8314651f6f124f5&units=metric&lang=es'
         datos_clima = requests.get(url).json()
         pronostico = ""
         for i in range(5):
@@ -36,7 +36,7 @@ def sms_reply():
                     horaCol = str(horaInt-5) + ':00 m'
                 else:
                     horaCol = str((horaInt-5)-12) + ':00 pm'
-            pronostico += "-A las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['main']) + "\U0001F327 \n"
+            pronostico += "-A las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['description']) + "\U0001F327 \n"
             #resp.message("Alrededor de las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['main']))
             #time.sleep(1)
 
