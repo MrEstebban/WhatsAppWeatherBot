@@ -36,9 +36,21 @@ def sms_reply():
                     horaCol = str(horaInt-5) + ':00 m'
                 else:
                     horaCol = str((horaInt-5)-12) + ':00 pm'
-            pronostico += "-A las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['description']) + "\U0001F327 \n"
-            #resp.message("Alrededor de las {} se espera {}".format(horaCol, datos_clima['list'][i]['weather'][0]['main']))
-            #time.sleep(1)
+
+            desc_princ = datos_clima['list'][i]['weather'][0]['main']
+            icono = " "
+
+            if desc_princ == "Thunderstorm"
+                icono = "\U00026C8"
+            elif desc_princ == "Drizzle" or desc_princ == "Rain":
+                icono = "\U0001F327"
+            elif desc_princ == "Clear":
+                icono = "\U0002600"
+            elif desc_princ == "Clouds":
+                icono = "\U00026C5"
+
+            pronostico += "-A las {} se espera {} {}\n".format(horaCol, datos_clima['list'][i]['weather'][0]['description'], icono)
+            #Fin for loop
 
         resp.message(pronostico)
 
