@@ -41,13 +41,13 @@ def sms_reply():
             icono = " "
 
             if desc_princ == "Thunderstorm":
-                icono = "\U00026C8"
+                icono = "\U000026C8"
             elif desc_princ == "Drizzle" or desc_princ == "Rain":
                 icono = "\U0001F327"
             elif desc_princ == "Clear":
-                icono = "\U0002600"
+                icono = "\U00002600"
             elif desc_princ == "Clouds":
-                icono = "\U00026C5"
+                icono = "\U000026C5"
 
             pronostico += "-A las {} se espera {} {}\n".format(horaCol, datos_clima['list'][i]['weather'][0]['description'], icono)
             #Fin for loop
