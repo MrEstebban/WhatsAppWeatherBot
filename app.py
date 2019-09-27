@@ -40,7 +40,7 @@ def sms_reply():
             desc_princ = datos_clima['list'][i]['weather'][0]['main']
             icono = " "
 
-            if desc_princ == "Thunderstorm"
+            if desc_princ == "Thunderstorm":
                 icono = "\U00026C8"
             elif desc_princ == "Drizzle" or desc_princ == "Rain":
                 icono = "\U0001F327"
