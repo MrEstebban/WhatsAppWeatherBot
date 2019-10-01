@@ -83,13 +83,12 @@ def sms_reply():
         resp.message(pronostico)
 
     else:
-        resp.message("Lo que enviaste: {}".format(msg))
         #respuesta de DialogFlow
         respuesta = fetch_reply(msg, tel)
 
         #Crea la respuesta al usuario
-        #resp = MessagingResponse()
         resp.message(respuesta)
+        resp.message("Lo que enviaste: {}".format(msg))
 
     return str(resp)
 
