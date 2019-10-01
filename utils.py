@@ -1,4 +1,4 @@
-import os, requests, time
+import os, time
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "experimentowpp-vdaiew-9fd044d5158b.json"
 
 import dialogflow_v2 as dialogflow
