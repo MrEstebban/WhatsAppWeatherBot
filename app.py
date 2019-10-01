@@ -84,11 +84,10 @@ def sms_reply():
 
     else:
         #respuesta de DialogFlow
-        #respuesta = fetch_reply(msg, tel)
+        respuesta = fetch_reply(msg, tel)
 
         #Crea la respuesta al usuario
-        #resp.message(respuesta)
-        resp.message("Lo que enviaste: {}".format(str(msg)))
+        resp.message(respuesta)
 
     return str(resp)
 
