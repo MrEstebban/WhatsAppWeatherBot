@@ -55,7 +55,7 @@ def sms_reply():
 
             pos = (len(mensajeRecibido)-1) - indice
             ciudad = mensajeRecibido[pos:].strip()
-            resp.message("ciudad:---{}---".format(ciudad))
+            #resp.message("ciudad:---{}---".format(ciudad))
             url = 'http://api.openweathermap.org/data/2.5/forecast?q={},co&appid=4b912705f55a6cded8314651f6f124f5&units=metric&lang=es'.format(ciudad)
             if str(requests.get(url)) == "<Response [200]>":
                 datos_clima = requests.get(url).json()
@@ -84,10 +84,10 @@ def sms_reply():
 
     else:
         #respuesta de DialogFlow
-        respuesta = fetch_reply(msg, tel)
+        #respuesta = fetch_reply(msg, tel)
 
         #Crea la respuesta al usuario
-        resp.message(respuesta)
+        #resp.message(respuesta)
         resp.message("Lo que enviaste: {}".format(msg))
 
     return str(resp)
