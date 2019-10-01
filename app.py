@@ -56,8 +56,8 @@ def sms_reply():
             pos = (len(mensajeRecibido)-1) - indice
             ciudad = mensajeRecibido[pos:]
             url = 'http://api.openweathermap.org/data/2.5/forecast?q={},co&appid=4b912705f55a6cded8314651f6f124f5&units=metric&lang=es'.format(ciudad)
+            resp.message(str(requests.get(url)))
             if str(requests.get(url)) == "<Response [200]>":
-                resp.message(str(requests.get(url)))
                 datos_clima = requests.get(url).json()
                 pronostico = "El pronóstico para {} es:\n".format(ciudad)
 
