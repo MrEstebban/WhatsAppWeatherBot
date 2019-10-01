@@ -1,8 +1,7 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from utils import fetch_reply
-from utils import dame_la_hora
-import requests, time
+from utils import dame_el_pronostico
 
 app = Flask(__name__)
 
@@ -26,25 +25,7 @@ def sms_reply():
         if mensajeRecibido == "pronóstico" or mensajeRecibido == "pronostico":
             url = 'http://api.openweathermap.org/data/2.5/forecast?q=Bogota,co&appid=4b912705f55a6cded8314651f6f124f5&units=metric&lang=es'
             datos_clima = requests.get(url).json()
-            pronostico = "El pronóstico para Bogotá es:\n"
-
-            for i in range(5):
-                hora = time.strftime('%H', time.gmtime(datos_clima['list'][i]['dt']))
-                horaInt = int(hora)
-                horaCol = dame_la_hora(horaInt)
-                desc_princ = datos_clima['list'][i]['weather'][0]['main']
-                icono = " "
-                if desc_princ == "Thunderstorm":
-                    icono = "\U000026C8"
-                elif desc_princ == "Drizzle" or desc_princ == "Rain":
-                    icono = "\U0001F327"
-                elif desc_princ == "Clear":
-                    icono = "\U00002600"
-                elif desc_princ == "Clouds":
-                    icono = "\U000026C5"
-
-                pronostico += "-A las {} se espera {} {}\n".format(horaCol, datos_clima['list'][i]['weather'][0]['description'], icono)
-                #Fin for loop
+            pronostico = "El pronóstico para Bogotá es:\n\n" + dame_el_pronostico(datos_clima)
         else:
             cadenaInvertida = mensajeRecibido[::-1]
             indice = 0
@@ -59,33 +40,16 @@ def sms_reply():
             url = 'http://api.openweathermap.org/data/2.5/forecast?q={},co&appid=4b912705f55a6cded8314651f6f124f5&units=metric&lang=es'.format(ciudad)
             if str(requests.get(url)) == "<Response [200]>":
                 datos_clima = requests.get(url).json()
-                pronostico = "El pronóstico para {} es:\n".format(ciudad)
-
-                for i in range(5):
-                    hora = time.strftime('%H', time.gmtime(datos_clima['list'][i]['dt']))
-                    horaInt = int(hora)
-                    horaCol = dame_la_hora(horaInt)
-                    desc_princ = datos_clima['list'][i]['weather'][0]['main']
-                    icono = " "
-                    if desc_princ == "Thunderstorm":
-                        icono = "\U000026C8"
-                    elif desc_princ == "Drizzle" or desc_princ == "Rain":
-                        icono = "\U0001F327"
-                    elif desc_princ == "Clear":
-                        icono = "\U00002600"
-                    elif desc_princ == "Clouds":
-                        icono = "\U000026C5"
-
-                    pronostico += "-A las {} se espera {} {}\n".format(horaCol, datos_clima['list'][i]['weather'][0]['description'], icono)
+                pronostico = "El pronóstico para {} es:\n\n".format(ciudad)
+                pronostico += dame_el_pronostico(datos_clima)
                     #Fin for loop
             else:
-                pronostico = "No hemos encontrado la ciudad '{}', intenta enviando el mensaje 'Pronostico nombreTuCiudad'".format(ciudad)
+                pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico nombreTuCiudad".format(ciudad)
         resp.message(pronostico)
 
     else:
         #respuesta de DialogFlow
         respuesta = fetch_reply(msg, tel)
-
         #Crea la respuesta al usuario
         resp.message(respuesta)
 
