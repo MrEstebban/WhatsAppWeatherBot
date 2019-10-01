@@ -88,7 +88,7 @@ def sms_reply():
 
         #Crea la respuesta al usuario
         #resp.message(respuesta)
-        resp.message("Lo que enviaste: {}".format(msg))
+        resp.message("Lo que enviaste: {}".format(str(msg)))
 
     return str(resp)
 
