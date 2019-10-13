@@ -46,7 +46,7 @@ def sms_reply():
             else:
                 pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico de nombreTuCiudad".format(ciudad)
         resp.message(pronostico)
-        resp.message(str(tel))
+        resp.message(str(tel)[9:])
         #resp.message(type(tel))
 
     else:
