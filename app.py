@@ -21,8 +21,8 @@ def sms_reply():
     mensajeRecibido = msg.lower().strip()
     pronostico = " "
 
+    resp.to(+573106773846)
     while True:
-        resp.to("+573106773846")
         resp.message("Locoooo")
         sleep(10)
 
