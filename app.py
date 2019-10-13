@@ -21,10 +21,6 @@ def sms_reply():
     mensajeRecibido = msg.lower().strip()
     pronostico = " "
 
-    while true:
-        resp.message("locooooo")
-        sleep(20)
-
     #Si el ensaje incluye la palabra "pronostico"
     if "pronostico" in mensajeRecibido or "pronóstico" in mensajeRecibido:
         if mensajeRecibido == "pronóstico" or mensajeRecibido == "pronostico":
@@ -50,7 +46,7 @@ def sms_reply():
             else:
                 pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico de nombreTuCiudad".format(ciudad)
         resp.message(pronostico)
-        resp.message(str(tel)[9:])
+        #resp.message(str(tel)[9:])
 
     else:
         #respuesta de DialogFlow
