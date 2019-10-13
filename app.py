@@ -22,7 +22,7 @@ def sms_reply():
     pronostico = " "
 
     while True:
-        resp.to(str(tel)[9:])
+        resp.to("+573106773846")
         resp.message("Locoooo")
         sleep(10)
 
