@@ -21,11 +21,6 @@ def sms_reply():
     mensajeRecibido = msg.lower().strip()
     pronostico = " "
 
-    resp.to(573106773846)
-    while True:
-        resp.message("Locoooo")
-        sleep(10)
-
     #Si el ensaje incluye la palabra "pronostico"
     if "pronostico" in mensajeRecibido or "pronóstico" in mensajeRecibido:
         if mensajeRecibido == "pronóstico" or mensajeRecibido == "pronostico":
