@@ -8,12 +8,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    resp = MessagingResponse()
-    resp.from('+14155238886')
-    resp.to('+573106773846')
-    while True:
-        resp.message("Locoooooo")
-        sleep(10)
     return "Hello! You didn't ask but my \"master\" is Esteban Pedraza :D"
 
 @app.route("/sms", methods=['POST'])
@@ -23,6 +17,12 @@ def sms_reply():
     msg = request.form.get('Body')
     tel = request.form.get('From')
     resp = MessagingResponse()
+
+    resp.from('+14155238886')
+    resp.to('+573106773846')
+    while True:
+        resp.message("Locoooooo")
+        sleep(10)
 
     mensajeRecibido = msg.lower().strip()
     pronostico = " "
