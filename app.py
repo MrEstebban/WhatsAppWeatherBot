@@ -46,8 +46,8 @@ def sms_reply():
             else:
                 pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico de nombreTuCiudad".format(ciudad)
         resp.message(pronostico)
-        resp.message(tel)
-        resp.message(type(tel))
+        resp.message(str(tel))
+        #resp.message(type(tel))
 
     else:
         #respuesta de DialogFlow
