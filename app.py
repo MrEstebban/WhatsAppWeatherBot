@@ -18,12 +18,6 @@ def sms_reply():
     tel = request.form.get('From')
     resp = MessagingResponse()
 
-    resp.from('+14155238886')
-    resp.to('+573106773846')
-    while True:
-        resp.message("Locoooooo")
-        sleep(10)
-
     mensajeRecibido = msg.lower().strip()
     pronostico = " "
 
