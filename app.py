@@ -47,11 +47,12 @@ def sms_reply():
                 pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico de nombreTuCiudad".format(ciudad)
         resp.message(pronostico)
         resp.message(str(tel)[9:])
-        resp.message(type(pronostico))
+        #resp.message(type(pronostico))
 
     else:
         #respuesta de DialogFlow
-        respuesta = fetch_reply(msg, tel)
+        sop = str(tel)
+        respuesta = fetch_reply(msg, sop)
         #Crea la respuesta al usuario
         resp.message(respuesta)
 
