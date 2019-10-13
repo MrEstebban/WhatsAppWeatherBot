@@ -24,7 +24,7 @@ def sms_reply():
     while true:
         resp.message("locooooo")
         sleep(20)
-    
+
     #Si el ensaje incluye la palabra "pronostico"
     if "pronostico" in mensajeRecibido or "pronóstico" in mensajeRecibido:
         if mensajeRecibido == "pronóstico" or mensajeRecibido == "pronostico":
