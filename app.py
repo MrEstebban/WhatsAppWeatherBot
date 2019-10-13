@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hey! My 'master' is Esteban Pedraza :D"
+    return "Hello! You didn't ask but my \"master\" is Esteban Pedraza :D"
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
@@ -37,7 +37,6 @@ def sms_reply():
 
             pos = (len(mensajeRecibido)-1) - indice
             ciudad = mensajeRecibido[pos:].strip()
-            #resp.message("ciudad:---{}---".format(ciudad))
             url = 'http://api.openweathermap.org/data/2.5/forecast?q={},co&appid=4b912705f55a6cded8314651f6f124f5&units=metric&lang=es'.format(ciudad)
             if str(requests.get(url)) == "<Response [200]>":
                 datos_clima = requests.get(url).json()
@@ -45,8 +44,10 @@ def sms_reply():
                 pronostico += dame_el_pronostico(datos_clima)
                     #Fin for loop
             else:
-                pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico nombreTuCiudad".format(ciudad)
+                pronostico = "\U0001F613 No encontré la ciudad \"{}\", intenta enviando: Pronostico de nombreTuCiudad".format(ciudad)
         resp.message(pronostico)
+        resp.message(tel)
+        resp.message(type(tel))
 
     else:
         #respuesta de DialogFlow
